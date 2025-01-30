@@ -1,4 +1,4 @@
-package model;
+package Q1.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,12 +10,12 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
-@Table(name = "servico_imovel")
+@Table(name = "aluguel")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class ServicoImovel {
+public class Aluguel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,16 +24,15 @@ public class ServicoImovel {
     @JoinColumn(name = "locacao_id", nullable = false)
     private Locacao locacao;
 
-    @ManyToOne
-    @JoinColumn(name = "profissional_id")
-    private Profissional profissional;
+    @Column(name = "data_vencimento", nullable = false)
+    private LocalDate dataVencimento;
 
-    @Column(nullable = false)
-    private String descricao;
+    @Column(name = "data_pagamento")
+    private LocalDate dataPagamento;
 
-    @Column(name = "data_servico", nullable = false)
-    private LocalDate dataServico;
+    @Column(name = "valor_pago", nullable = false)
+    private BigDecimal valorPago;
 
-    @Column(nullable = false)
-    private BigDecimal custo;
+    @Column(name = "multa")
+    private BigDecimal multa;
 }

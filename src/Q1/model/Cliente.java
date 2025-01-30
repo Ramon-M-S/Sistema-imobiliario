@@ -1,4 +1,4 @@
-package model;
+package Q1.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -6,35 +6,27 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Entity
-@Table(name = "imovel")
+@Table(name = "cliente")
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class Imovel {
+public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String endereco;
-
-    @Column(name = "valor_aluguel_sugerido", nullable = false)
-    private BigDecimal valorAluguelSugerido;
+    @Column(unique = true, nullable = false)
+    private String cpf;
 
     @Column(nullable = false)
-    private boolean disponivel = true;
+    private String nome;
 
-    @Column(nullable = false)
-    private boolean ativo = true;
-
-    @OneToMany(mappedBy = "imovel", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "inquilino", cascade = CascadeType.ALL)
     private List<Locacao> locacoes = new ArrayList<>();
-
 }
