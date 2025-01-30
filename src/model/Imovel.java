@@ -7,6 +7,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -32,5 +34,7 @@ public class Imovel {
     @Column(nullable = false)
     private boolean ativo = true;
 
+    @OneToMany(mappedBy = "imovel", cascade = CascadeType.ALL)
+    private List<Locacao> locacoes = new ArrayList<>();
 
 }
